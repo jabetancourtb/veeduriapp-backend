@@ -1,0 +1,70 @@
+<!--<%= @projects.inspect %>
+
+<% @projects.each do |project| %>
+    <tr class="<%= cycle("even pointer", "odd pointer") %>">
+      <td><%= project.name %></td>
+    </tr>
+<% end %>-->
+<div class="body_container">
+
+  
+    <% @projects.each do |project| %>
+
+      <a href=<%= project.id %> class="ref_section">
+
+        <div class="general_container">
+
+          <% if project.photo.class != NilClass && project.photo != ''%>
+
+            <div class="image_description">
+              <img src="<%= project.photo %>">
+            </div>
+
+            <div class="data_description">
+              <h5><%= project.title %></h5>
+              <p><%= project.description %></p>  
+              <p><%= project.updated_at.year %>-<%= project.updated_at.month %>-<%= project.updated_at.day %></p>
+            </div>
+
+          <% else %>
+
+          <div class="data_information">
+            <h5><%= project.title %></h5>
+            <p><%= project.description %></p>  
+            <p><%= project.updated_at.year %>-<%= project.updated_at.month %>-<%= project.updated_at.day %></p>
+          </div>
+
+          <% end %>
+
+          
+
+        </div>
+
+      </a>
+
+    <% end %>
+
+
+</div>
+
+
+<!-- <div class="general-container">
+
+    <div class="image-container">
+        <img src="resources/obra.jpeg" alt="noticia1">
+    </div>
+
+    <div class="data-description">
+        <p><h1>Project 3</h1>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+
+        <div class="option-button">
+            <button><img class="logo" src="resources/favorito.png" alt="Favorito" title="Favorito"></button>
+            <button><img class="logo" src="resources/compartir.png" alt="Compartir" title="Compartir"></button>
+            <button><img class="logo" src="resources/eliminar2.png" alt="Eliminar" title="Eliminar"></button>
+        </div>
+
+    </div>
+
+</div> -->

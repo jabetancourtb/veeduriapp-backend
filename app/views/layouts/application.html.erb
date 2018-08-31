@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VeeduriApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- <link href="/assets/stylesheets/style.css" rel="stylesheet"> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <% if user_signed_in? %>
+
+      <header>
+        <div class="navbar-fixed">
+          <nav class="red lighten-1">
+            <div class="container">
+            <div class="nav-wrapper row">
+              <a href="/" class="brand-logo ">VeeduriApp</a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><%= link_to 'Perfil', '/profile/' %></li>
+                <li><%= link_to 'Notificaciones', '/notifications/' %></li>
+                <li><%= link_to 'Publicaciones', '/publications/' %></li>
+                <li><%= link_to 'Proyectos', '/projects/' %></li>
+                <!-- <li><a href="/logout/">Salir</a></li> -->
+                <li><%= link_to 'Salir', destroy_user_session_path, method: :delete %></li>
+              </ul>
+            </div>
+            </div>
+          </nav>
+        </div>
+
+        <ul class="sidenav" id="mobile-demo">
+          <li><%= link_to 'Perfil', '/profile/' %></li>
+          <li><%= link_to 'Notificaciones', '/notifications/' %></li>
+          <li><%= link_to 'Publicaciones', '/publications/' %></li>
+          <li><%= link_to 'Proyectos', '/projects/' %></li>
+          <!-- <li><a href="/logout/">Salir</a></li> -->
+          <li><%= link_to 'Salir', destroy_user_session_path, method: :destroy %></li>
+        </ul>
+      </header>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+      
+      <script>
+        $(document).ready(function()
+        {
+          $('.sidenav').sidenav();
+        });
+      </script>
+
+    <% elsif %>
+
+      <header>
+        <nav class="red lighten-1">
+          <div class="container">
+          <div class="nav-wrapper">
+            <a href="/" class="brand-logo center">VeeduriApp</a>
+          </div>
+          </div>
+        </nav>
+      </header>
+
+    <% end%>
+      
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= yield %>
+
+  </body>
+</html>

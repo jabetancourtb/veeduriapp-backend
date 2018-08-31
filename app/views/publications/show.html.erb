@@ -1,0 +1,23 @@
+<div class="body_container">
+
+    <div class="title">     
+        <h5><%= @publications.title %></h5>
+        <p><%= @publications.updated_at.year %>-<%= @publications.updated_at.month %>-<%= @publications.updated_at.day %></p>
+    </div>
+
+    <div class="general_container">
+
+        <% if @publications.photo.class != NilClass && @publications.photo != '' %>
+            <img class="img_content" src="<%= @publications.photo %>">
+        <% end %>
+
+        <div class="data_information"> 
+            <p><%= @publications.information %></p>  
+        </div>
+        
+
+    </div>
+
+
+
+</div>

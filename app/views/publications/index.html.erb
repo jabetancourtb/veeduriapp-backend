@@ -1,0 +1,62 @@
+
+<div class="body_container">
+<%=current_user.email%>
+  
+    <% @publications.each do |publication| %>
+
+      <a href=<%= publication.id %> class="ref_section">
+
+        <div class="general_container">
+
+          <% if publication.photo.class != NilClass && publication.photo != '' %>
+
+            <div class="image_description">
+              <img src="<%= publication.photo %>">
+            </div>
+
+            <div class="data_description">
+              <h5><%= publication.title %></h5>
+              <p><%= publication.description %></p>  
+              <p><%= publication.updated_at.year %>-<%= publication.updated_at.month %>-<%= publication.updated_at.day %></p>
+            </div>
+
+          <% else %>
+            <div class="data_information">
+              <h5><%= publication.title %></h5>
+              <p><%= publication.description %></p>  
+              <p><%= publication.updated_at.year %>-<%= publication.updated_at.month %>-<%= publication.updated_at.day %></p>
+            </div>
+          <% end %>
+
+          
+
+        </div>
+
+      </a>
+
+    <% end %>
+
+
+</div>
+
+
+<!-- <div class="general-container">
+
+    <div class="image-container">
+        <img src="resources/obra.jpeg" alt="noticia1">
+    </div>
+
+    <div class="data-description">
+        <p><h1>Project 3</h1>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+
+        <div class="option-button">
+            <button><img class="logo" src="resources/favorito.png" alt="Favorito" title="Favorito"></button>
+            <button><img class="logo" src="resources/compartir.png" alt="Compartir" title="Compartir"></button>
+            <button><img class="logo" src="resources/eliminar2.png" alt="Eliminar" title="Eliminar"></button>
+        </div>
+
+    </div>
+
+</div> -->

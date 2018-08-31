@@ -1,0 +1,156 @@
+body
+{
+     /* background: #d0d6d8; */
+     background: #eef2f3;
+}
+
+.body_container
+{
+    width: 1024px;
+    margin: auto;
+}
+
+
+.ref_section
+{
+    text-decoration: none;
+    color: black;
+}
+
+.general_container
+{
+    border: 3px;
+    border-radius: 10px;
+    box-shadow: 1px 1px #888888;
+    margin: 10px;
+    background: white;
+}
+
+.image_description
+{
+    display: inline-block;
+    height: 250px;
+    margin: 15px;
+    vertical-align: top;
+}
+
+.image_description > img
+{
+    height: 250px;
+    width: 400px;
+}
+
+.data_description
+{
+    display:inline-block;
+    text-align: justify;
+    width: 500px;
+    margin-left: 20px;
+    font-size: 20px;
+    vertical-align: top;
+}
+
+
+.title
+{
+    text-align: center;
+    border: 1px;
+}
+
+.image_information
+{
+    display: inline-block;
+    text-align: justify;
+    margin: 20px;
+    vertical-align: top;
+}
+
+.img_content
+{
+    width: 100%;
+    height: auto;
+}
+
+.data_information
+{
+    /* display:contents; */
+    text-align: justify;
+    margin: 20px;
+    padding-top: 1px;
+    padding-bottom: 20px;
+    font-size: 20px;
+    vertical-align: top;
+}
+
+#mobile-demo > li
+{
+    margin-top: 10px;
+}
+
+
+@media screen and (max-width: 900px)
+{
+    .body_container
+    {
+       width: auto;
+       margin: none;
+    }
+    .image_description
+    {
+        height: 40px;
+    }
+
+    .image_description > img
+    {
+        height: 80px;
+        width: 160px;
+        /* margin-left: 45%; */
+    }
+
+    .data_description
+    {
+        width: 280px;
+        margin-top: 15px;
+        margin-left: 20px;
+        font-size: 12px;
+    }
+
+    .data_description > h5
+    {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+
+    .title
+    {
+        text-align: center;
+        border: 1px;
+        font-size: 15px;
+        padding: 0;
+    }
+
+    .data_information
+    {
+        /* padding-top: 1px; */
+        font-size: 9px;
+    }
+
+    .image_information
+    {
+        height: 80px;
+    }
+
+    /* .image_information > img
+    {
+        height: 150%;
+        width: 75%;
+    } */
+
+    /* .image_information > img
+    {
+        width: 100%;
+        height: auto;
+    } */
+ 
+}
