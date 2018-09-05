@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :notifications
-  has_many :projects, :through => :user_projects
+  has_many :notification
+  has_many :project, :through => :user_project
   
-  has_many :publications
+  has_many :publication
   has_many :user_publication
   #has_many :publications, :through => :user_publications
   # validates :name, presence: true

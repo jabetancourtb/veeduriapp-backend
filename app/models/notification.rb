@@ -1,5 +1,5 @@
 class Notification < ApplicationRecord
-    belongs_to :users
-    belongs_to :publications
-    belongs_to :projects
+    belongs_to :user
+    belongs_to :publication
+    belongs_to :project
 end
