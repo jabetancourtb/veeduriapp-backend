@@ -28,12 +28,29 @@
           <nav class="red lighten-1">
             <div class="container">
             <div class="nav-wrapper row">
+
+
+              <ul id="publications" class="dropdown-content">
+                <li><%= link_to 'Ver Publicaciones', '/publications/' %></li>
+                <li><%= link_to 'Publicar', '/publications/new/' %></li>
+                <!-- <li><a href="#!">two</a></li>
+                <li class="divider"></li>
+                <li><a href="#!">three</a></li> -->
+              </ul>
+
+
+
               <a href="/" class="brand-logo ">VeeduriApp</a>
               <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
                 <li><%= link_to 'Perfil', '/profile/' %></li>
                 <li><%= link_to 'Notificaciones', '/notifications/' %></li>
-                <li><%= link_to 'Publicaciones', '/publications/' %></li>
+                <!-- <li><%= link_to 'Publicaciones', '/publications/' %></li> -->
+
+
+                <li><a class="dropdown-trigger" href="#!" data-target="publications">Publicaciones<i class="material-icons right">arrow_drop_down</i></a></li>
+
+
                 <li><%= link_to 'Proyectos', '/projects/' %></li>
                 <!-- <li><a href="/logout/">Salir</a></li> -->
                 <li><%= link_to 'Salir', destroy_user_session_path, method: :delete %></li>
@@ -43,14 +60,21 @@
           </nav>
         </div>
 
+        <!--NavBar Movil (Lateral)-->
         <ul class="sidenav" id="mobile-demo">
           <li><%= link_to 'Perfil', '/profile/' %></li>
           <li><%= link_to 'Notificaciones', '/notifications/' %></li>
-          <li><%= link_to 'Publicaciones', '/publications/' %></li>
+          <!-- <li><%= link_to 'Publicaciones', '/publications/' %></li> -->
+
+
+          <li><a class="dropdown-trigger" href="#!" data-target="publications">Publicaciones<i class="material-icons right">arrow_drop_down</i></a></li>
+
+
           <li><%= link_to 'Proyectos', '/projects/' %></li>
           <!-- <li><a href="/logout/">Salir</a></li> -->
           <li><%= link_to 'Salir', destroy_user_session_path, method: :destroy %></li>
         </ul>
+
       </header>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
@@ -59,7 +83,10 @@
         $(document).ready(function()
         {
           $('.sidenav').sidenav();
+          
         });
+
+        $(".dropdown-trigger").dropdown();
       </script>
 
     <% elsif %>
