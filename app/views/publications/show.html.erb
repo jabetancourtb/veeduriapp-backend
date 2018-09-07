@@ -1,21 +1,35 @@
 <div class="body_container">
 
     <div class="title">     
-        <h5><%= @publications.title %></h5>
-        <p><%= @publications.updated_at.year %>-<%= @publications.updated_at.month %>-<%= @publications.updated_at.day %></p>
+        <h5><%= @publication.title %></h5>
+        <p><strong>Fecha publicación: </strong><%= @publication.updated_at.year %>-<%= @publication.updated_at.month %>-<%= @publication.updated_at.day %></p>
     </div>
 
     <div class="general_container">
 
-        <% if @publications.photo.class != NilClass && @publications.photo != '' %>
-            <img class="img_content" src="<%= @publications.photo %>">
+        <% if @publication.photo.class != NilClass && @publication.photo != '' %>
+            <img class="img_content" src="<%= @publication.photo %>">
         <% end %>
 
         <div class="data_information"> 
-            <p><%= @publications.information %></p>  
-        </div>
-        
+            <p><%= @publication.information %></p>  
 
+            <p>
+            <strong>Publicado por:</strong>
+            <% @publication_user_name.each do |pub_user| %>
+                <%= pub_user.name %>
+            <% end %>
+            </p>
+
+            <p>
+            <strong>Correo electrónico:</strong>
+            <% @publication_user_email.each do |pub_user| %>
+                <%= pub_user.email %>
+            <% end %>
+            </p>
+
+        </div>
+                
     </div>
 
 

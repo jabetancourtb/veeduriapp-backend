@@ -31,8 +31,9 @@
 
 
               <ul id="publications" class="dropdown-content">
-                <li><%= link_to 'Ver Publicaciones', '/publications/' %></li>
-                <li><%= link_to 'Publicar', '/publications/new/' %></li>
+                <li><%= link_to 'Ver publicaciones', '/publications/' %></li>
+                <li><%= link_to 'Crear publicación', '/publications/new/' %></li>
+                <li><a href="/publications/my_publications/<%=current_user.id%>">Mis publicaciones</a></li>
                 <!-- <li><a href="#!">two</a></li>
                 <li class="divider"></li>
                 <li><a href="#!">three</a></li> -->
@@ -48,11 +49,10 @@
                 <!-- <li><%= link_to 'Publicaciones', '/publications/' %></li> -->
 
 
-                <li><a class="dropdown-trigger" href="#!" data-target="publications">Publicaciones<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger"  data-target="publications">Publicaciones<i class="material-icons right">arrow_drop_down</i></a></li>
 
 
                 <li><%= link_to 'Proyectos', '/projects/' %></li>
-                <!-- <li><a href="/logout/">Salir</a></li> -->
                 <li><%= link_to 'Salir', destroy_user_session_path, method: :delete %></li>
               </ul>
             </div>
@@ -64,10 +64,10 @@
         <ul class="sidenav" id="mobile-demo">
           <li><%= link_to 'Perfil', '/profile/' %></li>
           <li><%= link_to 'Notificaciones', '/notifications/' %></li>
-          <!-- <li><%= link_to 'Publicaciones', '/publications/' %></li> -->
+          <li><%= link_to 'Publicaciones', '/publications/' %></li>
 
 
-          <li><a class="dropdown-trigger" href="#!" data-target="publications">Publicaciones<i class="material-icons right">arrow_drop_down</i></a></li>
+          <!-- <li><a class="dropdown-trigger" href="#!" data-target="publications">Publicaciones<i class="material-icons right">arrow_drop_down</i></a></li> -->
 
 
           <li><%= link_to 'Proyectos', '/projects/' %></li>
@@ -83,10 +83,8 @@
         $(document).ready(function()
         {
           $('.sidenav').sidenav();
-          
+          $(".dropdown-trigger").dropdown();
         });
-
-        $(".dropdown-trigger").dropdown();
       </script>
 
     <% elsif %>

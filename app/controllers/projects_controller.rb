@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
     def show
 
         if user_signed_in?
-            @projects = Project.find(params[:id])
+            @project = Project.find(params[:id])
         elsif
             redirect_to '/'  
         end

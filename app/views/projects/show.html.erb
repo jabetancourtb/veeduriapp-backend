@@ -1,20 +1,20 @@
 <div class="body_container">
 
     <div class="title">     
-        <h5><%= @projects.title %></h5>
-        <p><%= @projects.updated_at.year %>-<%= @projects.updated_at.month %>-<%= @projects.updated_at.day %></p>
+        <h5><%= @project.title %></h5>
+        <p><%= @project.updated_at.year %>-<%= @project.updated_at.month %>-<%= @project.updated_at.day %></p>
     </div>
 
     <div class="general_container">
 
-        <% if @projects.photo.class != NilClass && @projects.photo != '' %>
+        <% if @project.photo.class != NilClass && @project.photo != '' %>
             <!-- <div class="image_information"> -->
-                <img class="img_content" src="<%= @projects.photo %>">
+                <img class="img_content" src="<%= @project.photo %>">
             <!-- </div> -->
         <% end %>
 
         <div class="data_information"> 
-            <p><%= @projects.information %></p>  
+            <p><%= @project.information %></p>  
         </div>
 
     </div>
