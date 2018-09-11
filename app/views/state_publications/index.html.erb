@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>State Publications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Publication</th>
+      <th>Comment</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @state_publications.each do |state_publication| %>
+      <tr>
+        <td><%= state_publication.user %></td>
+        <td><%= state_publication.publication %></td>
+        <td><%= state_publication.comment %></td>
+        <td><%= state_publication.state %></td>
+        <td><%= link_to 'Show', state_publication %></td>
+        <td><%= link_to 'Edit', edit_state_publication_path(state_publication) %></td>
+        <td><%= link_to 'Destroy', state_publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New State Publication', new_state_publication_path %>

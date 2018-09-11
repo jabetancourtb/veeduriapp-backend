@@ -8,6 +8,7 @@ class CreateProjects < ActiveRecord::Migration[5.2]
       t.text :description # Little description for the project with keywords
 
       t.string :photo
+      t.integer :visits_count
       t.timestamps
     end
   end

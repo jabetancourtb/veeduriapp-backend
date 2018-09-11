@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @state_publication.user %>
+</p>
+
+<p>
+  <strong>Publication:</strong>
+  <%= @state_publication.publication %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @state_publication.comment %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @state_publication.state %>
+</p>
+
+<%= link_to 'Edit', edit_state_publication_path(@state_publication) %> |
+<%= link_to 'Back', state_publications_path %>

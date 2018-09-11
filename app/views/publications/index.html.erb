@@ -18,6 +18,14 @@
               <h5><%= link_to publication.title, publication %></h5>
               <p><%= link_to publication.description, publication %></p>  
               <p><strong>Fecha publicación: </strong><%= publication.updated_at.year %>-<%= publication.updated_at.month %>-<%= publication.updated_at.day %></p>       
+
+              <% unless publication.user.nil?%>
+                <p>
+                <strong>Publicado por:</strong>
+                <%= publication.user.name%> 
+                </p>
+              <% end %>
+
             </div>
 
           <% else %>
@@ -25,6 +33,14 @@
               <h5><%= link_to publication.title, publication %></h5>
               <p><%= link_to publication.description, publication %></p>  
               <p><strong>Fecha publicación: </strong><%= publication.updated_at.year %>-<%= publication.updated_at.month %>-<%= publication.updated_at.day %></p>
+              
+              <% unless publication.user.nil?%>
+                <p>
+                <strong>Publicado por:</strong>
+                <%= publication.user.name%> 
+                </p>
+              <% end %>
+              
             </div>
           <% end %>
 
@@ -34,29 +50,4 @@
 
     <% end %>
 
-
-
-
 </div>
-
-
-<!-- <div class="general-container">
-
-    <div class="image-container">
-        <img src="resources/obra.jpeg" alt="noticia1">
-    </div>
-
-    <div class="data-description">
-        <p><h1>Project 3</h1>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-
-        <div class="option-button">
-            <button><img class="logo" src="resources/favorito.png" alt="Favorito" title="Favorito"></button>
-            <button><img class="logo" src="resources/compartir.png" alt="Compartir" title="Compartir"></button>
-            <button><img class="logo" src="resources/eliminar2.png" alt="Eliminar" title="Eliminar"></button>
-        </div>
-
-    </div>
-
-</div> -->

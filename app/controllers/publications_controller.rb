@@ -1,6 +1,7 @@
 class PublicationsController < ApplicationController
 
     before_action :authenticate_user!, except: [:index, :show]
+    before_action :set_publication, except: [:index, :new, :create, :my_publications]
 
     def index
         @publications = Publication.order("updated_at DESC")
@@ -8,9 +9,8 @@ class PublicationsController < ApplicationController
     
 
     def show
-        @publication = Publication.find(params[:id])
-        # @publication_user_name = User.select(User.arel_table[:name]).where(Publication.arel_table[:id].eq(params[:id])).joins(:publication)
-        # @publication_user_email = User.select(User.arel_table[:email]).where(Publication.arel_table[:id].eq(params[:id])).joins(:publication)
+        #@publication = Publication.find(params[:id])
+        @publication.update_visits_count
     end
 
 
@@ -20,16 +20,7 @@ class PublicationsController < ApplicationController
 
 
     def create
-        # @publication = current_user.publication.new(title: params[:publication][:title], 
-        # description: params[:publication][:description],
-        # information: params[:publication][:information],
-        # photo: params[:publication][:photo],
-        # user_id: current_user.id)
-
-         @publication = current_user.publication.new(publication_params) # Doesn't work it because the user_id is unknown
-        
-        # @publication.save
-        # redirect_to @publications
+        @publication = current_user.publication.new(publication_params) 
 
         if @publication.save
             redirect_to @publication
@@ -42,18 +33,13 @@ class PublicationsController < ApplicationController
     
 
     def edit
-        @publication = Publication.find(params[:id])
+       # @publication = Publication.find(params[:id])
     end
 
 
     def update
-        @publication = Publication.find(params[:id])
+        #@publication = Publication.find(params[:id])
 
-        # if @publication.update(title: params[:publication][:title], 
-        #     description: params[:publication][:description],
-        #     information: params[:publication][:information],
-        #     photo: params[:publication][:photo],
-        #     user_id: current_user.id)
         if @publication.update(publication_params)
             redirect_to @publication
         elsif
@@ -63,7 +49,7 @@ class PublicationsController < ApplicationController
 
 
     def destroy
-        @publication = Publication.find(params[:id])
+        #@publication = Publication.find(params[:id])
         @publication.destroy
         redirect_to "#{publications_path}/my_publications/#{current_user.id}"
     end
@@ -79,13 +65,17 @@ class PublicationsController < ApplicationController
             .joins(Publication.arel_table.join(User.arel_table)
             .on(User.arel_table[:id].eq(Publication.arel_table[:user_id])).join_sources)
 
-            puts @publications_account
-
         elsif
             redirect_to '/publications/' 
         end        
     end
 
+
+    private
+
+    def set_publication
+        @publication = Publication.find(params[:id])
+    end
 
     def publication_params
        params.require(:publication).permit(:title, :description, :information, :photo)

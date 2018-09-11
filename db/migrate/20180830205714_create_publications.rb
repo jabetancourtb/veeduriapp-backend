@@ -5,6 +5,7 @@ class CreatePublications < ActiveRecord::Migration[5.2]
       t.string :description
       t.text :information
       t.string :photo
+      t.integer :visits_count
       t.belongs_to :user, foreign_key: true
       t.timestamps
     end

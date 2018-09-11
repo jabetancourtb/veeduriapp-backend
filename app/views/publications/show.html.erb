@@ -3,6 +3,7 @@
     <div class="title">     
         <h5><%= @publication.title %></h5>
         <p><strong>Fecha publicación: </strong><%= @publication.updated_at.year %>-<%= @publication.updated_at.month %>-<%= @publication.updated_at.day %></p>
+        <p>Visto: <%= @publication.visits_count %></p>
     </div>
 
     <div class="general_container">
@@ -30,7 +31,5 @@
         </div>
                 
     </div>
-
-
 
 </div>
