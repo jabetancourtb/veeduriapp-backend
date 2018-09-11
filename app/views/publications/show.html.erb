@@ -14,19 +14,18 @@
         <div class="data_information"> 
             <p><%= @publication.information %></p>  
 
-            <p>
-            <strong>Publicado por:</strong>
-            <% @publication_user_name.each do |pub_user| %>
-                <%= pub_user.name %>
-            <% end %>
-            </p>
+           
+            <% unless @publication.user.nil?%>
+                <p>
+                <strong>Publicado por:</strong>
+                <%= @publication.user.name%> 
+                </p>
 
-            <p>
-            <strong>Correo electrónico:</strong>
-            <% @publication_user_email.each do |pub_user| %>
-                <%= pub_user.email %>
+                <p>
+                <strong>Correo electrónico:</strong>
+                <%= @publication.user.email%> 
+                </p>
             <% end %>
-            </p>
 
         </div>
                 

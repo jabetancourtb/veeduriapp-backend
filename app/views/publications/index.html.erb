@@ -1,6 +1,6 @@
 
 <div class="body_container">
-<!-- <%=current_user.email%> -->
+
   
     <% @publications.each do |publication| %>
 
@@ -11,7 +11,7 @@
           <% if publication.photo.class != NilClass && publication.photo != '' %>
 
             <div class="image_description">
-             <%= link_to <img src="<%= publication.photo %>">, publication %>%
+              <img src="<%= publication.photo %>">
             </div>
 
             <div class="data_description">
