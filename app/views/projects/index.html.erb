@@ -10,37 +10,33 @@
   
     <% @projects.each do |project| %>
 
-      <a href=<%= project.id %> class="ref_section">
-
         <div class="general_container">
 
           <% if project.photo.class != NilClass && project.photo != ''%>
 
             <div class="image_description">
-              <img src="<%= project.photo %>">
+              <%= link_to <img src="<%= publication.photo %>">, publication %>%
             </div>
 
             <div class="data_description">
-              <h5><%= project.title %></h5>
-              <p><%= project.description %></p>  
+              <h5><%= link_to project.title, project %></h5>
+              <p><%= link_to project.description, project  %></p>  
               <p><%= project.updated_at.year %>-<%= project.updated_at.month %>-<%= project.updated_at.day %></p>
             </div>
 
           <% else %>
 
           <div class="data_information">
-            <h5><%= project.title %></h5>
-            <p><%= project.description %></p>  
+            <h5><%= link_to project.title, project  %></h5>
+            <p><%= link_to project.description, project  %></p>  
             <p><%= project.updated_at.year %>-<%= project.updated_at.month %>-<%= project.updated_at.day %></p>
           </div>
 
           <% end %>
-
           
 
         </div>
 
-      </a>
 
     <% end %>
 

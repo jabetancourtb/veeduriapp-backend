@@ -32,19 +32,23 @@ class PublicationsController < ApplicationController
     def create
         if user_signed_in?
             
-            @publications = Publication.new(title: params[:publication][:title], 
+            @publication = Publication.new(title: params[:publication][:title], 
             description: params[:publication][:description],
             information: params[:publication][:information],
             photo: params[:publication][:photo],
             user_id: current_user.id)
+
+            # @publication = Publication.new(publication_params) # Doesn't work it because the user_id is unknown
             
-            @publications.save
+            # @publication.save
             # redirect_to @publications
 
-            if @publications.save
-                redirect_to @publications
+            if @publication.save
+                redirect_to @publication
+                puts "Guardado con exito"
             elsif
                 redirect_to '/publications/new/'
+                puts "No se guardo :C"
             end
 
         elsif
@@ -52,6 +56,45 @@ class PublicationsController < ApplicationController
         end
     end
     
+
+    def edit
+        if user_signed_in?
+            @publication = Publication.find(params[:id])
+        elsif
+            redirect_to '/'  
+        end
+    end
+
+
+    def update
+        if user_signed_in?
+            @publication = Publication.find(params[:id])
+
+            if @publication.update(title: params[:publication][:title], 
+                description: params[:publication][:description],
+                information: params[:publication][:information],
+                photo: params[:publication][:photo],
+                user_id: current_user.id)
+                redirect_to @publication
+            elsif
+                render :edit
+            end
+
+        elsif
+            redirect_to '/'  
+        end
+    end
+
+
+    def destroy
+        if user_signed_in?
+            @publication = Publication.find(params[:id])
+            @publication.destroy
+            redirect_to "#{publications_path}/my_publications/#{current_user.id}"
+        elsif
+            redirect_to '/'  
+        end
+    end
 
     def my_publications
         if user_signed_in? and current_user.id.to_s == params[:user_id]
@@ -69,6 +112,11 @@ class PublicationsController < ApplicationController
         elsif
             redirect_to '/publications/' 
         end        
+    end
+
+
+    def publication_params
+       puts params.require(:publication).permit(:title, :description, :information, :photo, :user_id)
     end
 
 end

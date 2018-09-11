@@ -11,19 +11,19 @@
           <% if publication.photo.class != NilClass && publication.photo != '' %>
 
             <div class="image_description">
-              <img src="<%= publication.photo %>">
+             <%= link_to <img src="<%= publication.photo %>">, publication %>%
             </div>
 
             <div class="data_description">
-              <h5><%= publication.title %></h5>
-              <p><%= publication.description %></p>  
+              <h5><%= link_to publication.title, publication %></h5>
+              <p><%= link_to publication.description, publication %></p>  
               <p><strong>Fecha publicación: </strong><%= publication.updated_at.year %>-<%= publication.updated_at.month %>-<%= publication.updated_at.day %></p>       
             </div>
 
           <% else %>
             <div class="data_information">
-              <h5><%= publication.title %></h5>
-              <p><%= publication.description %></p>  
+              <h5><%= link_to publication.title, publication %></h5>
+              <p><%= link_to publication.description, publication %></p>  
               <p><strong>Fecha publicación: </strong><%= publication.updated_at.year %>-<%= publication.updated_at.month %>-<%= publication.updated_at.day %></p>
             </div>
           <% end %>

@@ -3,43 +3,44 @@
 
     <p>
         <strong>Número de publicaciones:</strong>
-        <% @publications_account.each do |account| %>
-            <%= account.count %>
+        <% if @publications_account.present? %>
+            <% @publications_account.each do |account| %>
+                <%= account.count %>
+            <% end %>
         <% end %>
     </p>
   
     <% @publications.each do |publication| %>
-
-        <a href="/publications/<%= publication.id %>" class="ref_section">
 
             <div class="general_container">
 
                 <% if publication.photo.class != NilClass && publication.photo != '' %>
 
                     <div class="image_description">
-                    <img src="<%= publication.photo %>">
+                    <%= link_to <img src="<%= publication.photo %>">, publication %>%
                     </div>
 
                     <div class="data_description">
-                    <h5><%= publication.title %></h5>
-                    <p><%= publication.description %></p>  
+                    <h5><%= link_to publication.title, publication %></h5>
+                    <p><%= link_to publication.description, publication  %></p>  
                     <p><%= publication.updated_at.year %>-<%= publication.updated_at.month %>-<%= publication.updated_at.day %></p>
+                    <p><%= link_to "Eliminar", publication, method: :delete  %></p> 
+                    <p><%= link_to "Editar", edit_publication_path(publication) %></p>  
                     </div>
 
                 <% else %>
                     <div class="data_information">
-                    <h5><%= publication.title %></h5>
-                    <p><%= publication.description %></p>  
+                    <h5><%= link_to publication.title, publication %></h5>
+                    <p><%= link_to publication.description, publication  %></p>  
                     <p><%= publication.updated_at.year %>-<%= publication.updated_at.month %>-<%= publication.updated_at.day %></p>
+                    <p><%= link_to "Eliminar", publication, method: :delete  %></p> 
+                    <p><%= link_to "Editar", edit_publication_path(publication) %></p> 
                     </div>
                 <% end %>
 
             </div>
 
-        </a>
-
     <% end %>
-
 
 </div>
 
