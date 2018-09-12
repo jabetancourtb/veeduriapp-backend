@@ -1,0 +1,46 @@
+
+<div class="body_container">
+
+    <p>
+        <strong>Número de proyectos:</strong>
+        <% if @projects_account.present? %>
+            <% @projects_account.each do |account| %>
+                <%= account.count %>
+            <% end %>
+        <% end %>
+    </p>
+  
+    <% @projects.each do |project| %>
+
+            <div class="general_container">
+
+                <% if project.photo.class != NilClass && project.photo != '' %>
+
+                    <div class="image_description">
+                      <img src="<%= project.photo %>">
+                    </div>
+
+                    <div class="data_description">
+                    <h5><%= link_to project.title, project %></h5>
+                    <p><%= link_to project.description, project  %></p>  
+                    <p><%= project.updated_at.year %>-<%= project.updated_at.month %>-<%= project.updated_at.day %></p>
+                    <p><%= link_to "Eliminar", project, method: :delete  %></p> 
+                    <p><%= link_to "Editar", edit_project_path(project) %></p>  
+                    </div>
+
+                <% else %>
+                    <div class="data_information">
+                    <h5><%= link_to project.title, project %></h5>
+                    <p><%= link_to project.description, project  %></p>  
+                    <p><%= project.updated_at.year %>-<%= project.updated_at.month %>-<%= project.updated_at.day %></p>
+                    <p><%= link_to "Eliminar", project, method: :delete  %></p> 
+                    <p><%= link_to "Editar", edit_project_path(project) %></p> 
+                    </div>
+                <% end %>
+
+            </div>
+
+    <% end %>
+
+</div>
+

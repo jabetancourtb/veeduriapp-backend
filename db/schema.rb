@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(version: 2018_09_11_180502) do
     t.text "description"
     t.string "photo"
     t.integer "visits_count"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "publications", force: :cascade do |t|
@@ -89,6 +91,7 @@ ActiveRecord::Schema.define(version: 2018_09_11_180502) do
 
   add_foreign_key "notifications", "state_projects"
   add_foreign_key "notifications", "state_publications"
+  add_foreign_key "projects", "users"
   add_foreign_key "publications", "users"
   add_foreign_key "state_projects", "projects"
   add_foreign_key "state_projects", "users"

@@ -2,21 +2,52 @@
 
     <div class="title">     
         <h5><%= @project.title %></h5>
-        <p><%= @project.updated_at.year %>-<%= @project.updated_at.month %>-<%= @project.updated_at.day %></p>
+        <h6><%= @project.name %></h6>
+        <p><strong>Fecha publicación: </strong><%= @project.updated_at.year %>-<%= @project.updated_at.month %>-<%= @project.updated_at.day %></p>
+        <p>Visto: <%= @project.visits_count %></p>
     </div>
 
     <div class="general_container">
 
         <% if @project.photo.class != NilClass && @project.photo != '' %>
-            <!-- <div class="image_information"> -->
-                <img class="img_content" src="<%= @project.photo %>">
-            <!-- </div> -->
+            <img class="img_content" src="<%= @project.photo %>">
         <% end %>
 
         <div class="data_information"> 
             <p><%= @project.information %></p>  
-        </div>
 
+           
+            <% unless @project.user.nil?%>
+                <p>
+                <strong>Publicado por:</strong>
+                <%= @project.user.name%> 
+                </p>
+
+                <p>
+                <strong>Correo electrónico:</strong>
+                <%= @project.user.email%> 
+                </p>
+            <% end %>
+
+        </div>
+                
+    </div>
+
+    <div class="general_container">
+        <h5>Comentarios</h5>
+
+        <ul>
+            <% @project.state_project.each do  |comment| %>
+                <li>   
+                    <strong><%= comment.user.name %>:</strong> 
+                    <%= comment.comment %> 
+                </li>
+            <% end %>
+        </ul>
+
+        <% if user_signed_in? %>
+            <%= render "state_projects/form" %>
+        <% end %>
     </div>
 
 </div>

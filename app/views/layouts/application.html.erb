@@ -39,6 +39,17 @@
                 <li><a href="#!">three</a></li> -->
               </ul>
 
+              
+              <ul id="projects" class="dropdown-content">
+                <li><%= link_to 'Ver proyectos', '/projects/' %></li>
+                <li><%= link_to 'Crear proyecto', '/projects/new/' %></li>
+                <li><a href="/projects/my_projects/<%=current_user.id%>">Mis proyectos</a></li>
+                <!-- <li><a href="#!">two</a></li>
+                <li class="divider"></li>
+                <li><a href="#!">three</a></li> -->
+              </ul>
+
+
 
 
               <a href="/" class="brand-logo ">VeeduriApp</a>
@@ -51,8 +62,9 @@
 
                 <li><a class="dropdown-trigger"  data-target="publications">Publicaciones<i class="material-icons right">arrow_drop_down</i></a></li>
 
+                <li><a class="dropdown-trigger"  data-target="projects">Proyectos<i class="material-icons right">arrow_drop_down</i></a></li>
 
-                <li><%= link_to 'Proyectos', '/projects/' %></li>
+                <!-- <li><%= link_to 'Proyectos', '/projects/' %></li>-->
                 <li><%= link_to 'Salir', destroy_user_session_path, method: :delete %></li>
               </ul>
             </div>

@@ -1,5 +1,6 @@
 class StatePublicationsController < ApplicationController
   before_action :set_state_publication, only: [:show, :edit, :update, :destroy]
+  before_action :set_publication
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /state_publications
@@ -25,11 +26,12 @@ class StatePublicationsController < ApplicationController
   # POST /state_publications
   # POST /state_publications.json
   def create
-    @state_publication = StatePublication.new(state_publication_params)
+    @state_publication = current_user.state_publication.new(state_publication_params)
+    @state_publication.publication = @publication
 
     respond_to do |format|
       if @state_publication.save
-        format.html { redirect_to @state_publication, notice: 'State publication was successfully created.' }
+        format.html { redirect_to @state_publication.publication, notice: 'State publication was successfully created.' }
         format.json { render :show, status: :created, location: @state_publication }
       else
         format.html { render :new }
@@ -43,7 +45,7 @@ class StatePublicationsController < ApplicationController
   def update
     respond_to do |format|
       if @state_publication.update(state_publication_params)
-        format.html { redirect_to @state_publication, notice: 'State publication was successfully updated.' }
+        format.html { redirect_to @state_publication.publication, notice: 'State publication was successfully updated.' }
         format.json { render :show, status: :ok, location: @state_publication }
       else
         format.html { render :edit }
@@ -57,12 +59,17 @@ class StatePublicationsController < ApplicationController
   def destroy
     @state_publication.destroy
     respond_to do |format|
-      format.html { redirect_to state_publications_url, notice: 'State publication was successfully destroyed.' }
+      format.html { redirect_to @publication, notice: 'State publication was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
+    def set_publication
+      @publication = Publication.find(params[:publication_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_state_publication
       @state_publication = StatePublication.find(params[:id])

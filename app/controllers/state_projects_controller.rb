@@ -1,5 +1,6 @@
 class StateProjectsController < ApplicationController
   before_action :set_state_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /state_projects
@@ -25,11 +26,12 @@ class StateProjectsController < ApplicationController
   # POST /state_projects
   # POST /state_projects.json
   def create
-    @state_project = StateProject.new(state_project_params)
+    @state_project = current_user.state_project.new(state_project_params)
+    @state_project.project = @project
 
     respond_to do |format|
       if @state_project.save
-        format.html { redirect_to @state_project, notice: 'State project was successfully created.' }
+        format.html { redirect_to @state_project.project, notice: 'State project was successfully created.' }
         format.json { render :show, status: :created, location: @state_project }
       else
         format.html { render :new }
@@ -43,7 +45,7 @@ class StateProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @state_project.update(state_project_params)
-        format.html { redirect_to @state_project, notice: 'State project was successfully updated.' }
+        format.html { redirect_to @state_project.project, notice: 'State project was successfully updated.' }
         format.json { render :show, status: :ok, location: @state_project }
       else
         format.html { render :edit }
@@ -57,12 +59,17 @@ class StateProjectsController < ApplicationController
   def destroy
     @state_project.destroy
     respond_to do |format|
-      format.html { redirect_to state_projects_url, notice: 'State project was successfully destroyed.' }
+      format.html { redirect_to @project, notice: 'State project was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_state_project
       @state_project = StateProject.find(params[:id])

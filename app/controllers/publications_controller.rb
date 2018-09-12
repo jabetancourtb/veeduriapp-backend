@@ -11,6 +11,7 @@ class PublicationsController < ApplicationController
     def show
         #@publication = Publication.find(params[:id])
         @publication.update_visits_count
+        @state_publication = StatePublication.new
     end
 
 

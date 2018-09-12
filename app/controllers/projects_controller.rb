@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
     before_action :authenticate_user!, except: [:index, :show]
-    before_action :set_publication, except: [:index, :new, :create, :my_publications]
+    before_action :set_project, except: [:index, :new, :create, :my_projects]
 
     def index
         @projects = Project.order("updated_at DESC")
@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
     
     def show
         @project.update_visits_count
+        @state_project = StateProject.new
     end
 
 
@@ -23,10 +24,8 @@ class ProjectsController < ApplicationController
 
         if @project.save
             redirect_to @project
-            puts "Guardado con exito"
         elsif
             redirect_to '/projects/new/'
-            puts "No se guardo :C"
         end
     end
     
@@ -42,10 +41,10 @@ class ProjectsController < ApplicationController
 
     def destroy
         @project.destroy
-        #redirect_to "#{projects_path}/my_publications/#{current_user.id}"
+        redirect_to "#{projects_path}/my_projects/#{current_user.id}"
     end
 
-    def my_publications
+    def my_projects
         if current_user.id.to_s == params[:user_id]
             
             @projects = Project.select(Project.arel_table[Arel.star]).where(User.arel_table[:id].eq(current_user.id))

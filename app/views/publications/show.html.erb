@@ -32,4 +32,21 @@
                 
     </div>
 
+    <div class="general_container">
+        <h5>Comentarios</h5>
+
+        <ul>
+            <% @publication.state_publication.each do  |comment| %>
+                <li>   
+                    <strong><%= comment.user.name %>:</strong> 
+                    <%= comment.comment %> 
+                </li>
+            <% end %>
+        </ul>
+
+        <% if user_signed_in? %>
+            <%= render "state_publications/form" %>
+        <% end %>
+    </div>
+
 </div>

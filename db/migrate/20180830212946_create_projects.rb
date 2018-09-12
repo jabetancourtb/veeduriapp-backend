@@ -9,6 +9,8 @@ class CreateProjects < ActiveRecord::Migration[5.2]
 
       t.string :photo
       t.integer :visits_count
+      
+      t.belongs_to :user, foreign_key: true
       t.timestamps
     end
   end
