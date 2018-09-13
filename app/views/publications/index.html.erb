@@ -11,7 +11,8 @@
           <% if publication.photo.class != NilClass && publication.photo != '' %>
 
             <div class="image_description">
-              <img src="<%= publication.photo %>">
+            <!--<img src="<%= publication.photo %>">-->
+              <%= image_tag @publication.cover.url()%>
             </div>
 
             <div class="data_description">

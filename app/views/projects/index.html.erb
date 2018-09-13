@@ -15,7 +15,8 @@
           <% if project.photo.class != NilClass && project.photo != ''%>
 
             <div class="image_description">
-              <img src="<%= project.photo %>">
+              <!--<img src="<%= project.photo %>">-->
+              <%= image_tag @project.cover.url()%>
             </div>
 
             <div class="data_description">

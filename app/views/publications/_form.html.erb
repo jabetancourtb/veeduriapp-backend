@@ -23,9 +23,14 @@
     <%= f.text_area :information, placeholder: "Información completa y detallada de la publicación" ,autofocus: true, autocomplete: "information" %>
   </div>
 
-  <div class="field">
+  <%# <div class="field">
     <%= f.label :Url_de_la_foto_o_imagen %><br />
     <%= f.text_field :photo, placeholder: "ejemplo - '/assets/noticia1/'" ,autofocus: true, autocomplete: "photo" %>
+  </div> %>
+
+  <div class="field">
+    <%= f.label :Foto %><br />
+    <%= f.file_field :cover, placeholder: "Ruta de la Foto" ,autofocus: true, autocomplete: "cover" %>
   </div>
 
   <div class="field">
