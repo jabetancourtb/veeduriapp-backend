@@ -1,6 +1,6 @@
 <%-#= form_with(model: state_project, local: true) do |form| -%>
 
-<%= form_for([@project, @state_project]) do |form| %>
+<%= form_for([@project, @state_project], remote: true, html: {id: "comments-form-project", :"data-type" => "json"}) do |form| %>
   <% if @state_project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@state_project.errors.count, "error") %> prohibited this state_project from being saved:</h2>

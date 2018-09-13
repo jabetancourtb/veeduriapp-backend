@@ -32,7 +32,7 @@ class StateProjectsController < ApplicationController
     respond_to do |format|
       if @state_project.save
         format.html { redirect_to @state_project.project, notice: 'State project was successfully created.' }
-        format.json { render :show, status: :created, location: @state_project }
+        format.json { render :show, status: :created, location: @state_project.project }
       else
         format.html { render :new }
         format.json { render json: @state_project.errors, status: :unprocessable_entity }

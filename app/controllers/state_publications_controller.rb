@@ -32,7 +32,7 @@ class StatePublicationsController < ApplicationController
     respond_to do |format|
       if @state_publication.save
         format.html { redirect_to @state_publication.publication, notice: 'State publication was successfully created.' }
-        format.json { render :show, status: :created, location: @state_publication }
+        format.json { render :show, status: :created, location: @state_publication.publication }
       else
         format.html { render :new }
         format.json { render json: @state_publication.errors, status: :unprocessable_entity }

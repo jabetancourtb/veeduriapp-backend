@@ -35,7 +35,7 @@
     <div class="general_container">
         <h5>Comentarios</h5>
 
-        <ul>
+        <ul id="comments-box-publication">
             <% @publication.state_publication.each do  |comment| %>
                 <li>   
                     <strong><%= comment.user.name %>:</strong> 
