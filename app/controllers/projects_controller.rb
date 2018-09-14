@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
     before_action :authenticate_user!, except: [:index, :show]
     before_action :set_project, except: [:index, :new, :create, :my_projects]
-    before_action :authenticate_admin! , only: [:new, :create, :update, :edit, :destroy]
+    before_action :authenticate_admin! , only: [:new, :create, :update, :edit, :destroy, :my_projects]
 
     def index
         @projects = Project.order("updated_at DESC")
