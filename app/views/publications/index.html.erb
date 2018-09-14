@@ -4,8 +4,6 @@
   
     <% @publications.each do |publication| %>
 
-      <a href=<%= publication.id %> class="ref_section">
-
         <div class="general_container">
 
           <% if publication.photo.class != NilClass && publication.photo != '' %>
@@ -46,8 +44,6 @@
           <% end %>
 
         </div>
-
-      </a>
 
     <% end %>
 

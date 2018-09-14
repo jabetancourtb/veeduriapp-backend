@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   
   devise_for :users 
 
+  get '/users/' , to: 'users#index'
+  get '/users/:id' , to: 'users#show'
+
   resources :publications do
     resources :state_publications, only: [:create, :destroy, :update, :show]
   end

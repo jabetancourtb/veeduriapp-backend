@@ -5,6 +5,7 @@ class PublicationsController < ApplicationController
 
     def index
         @publications = Publication.order("updated_at DESC")
+        #@publications = current_user.publication.all
     end
     
 
@@ -58,16 +59,17 @@ class PublicationsController < ApplicationController
     def my_publications
         if current_user.id.to_s == params[:user_id]
             
-            @publications = Publication.select(Publication.arel_table[Arel.star]).where(User.arel_table[:id].eq(current_user.id))
-            .joins(Publication.arel_table.join(User.arel_table)
-            .on(User.arel_table[:id].eq(Publication.arel_table[:user_id])).join_sources)
+            # @publications = Publication.select(Publication.arel_table[Arel.star]).where(User.arel_table[:id].eq(current_user.id))
+            # .joins(Publication.arel_table.join(User.arel_table)
+            # .on(User.arel_table[:id].eq(Publication.arel_table[:user_id])).join_sources)
+            @publications = current_user.publication.all
 
             @publications_account = Publication.select(Arel.star.count).where(User.arel_table[:id].eq(current_user.id))
             .joins(Publication.arel_table.join(User.arel_table)
             .on(User.arel_table[:id].eq(Publication.arel_table[:user_id])).join_sources)
 
         elsif
-            redirect_to '/publications/' 
+            redirect_to "/publications/my_publications/#{current_user.id}"
         end        
     end
 

@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
     before_action :authenticate_user!, except: [:index, :show]
     before_action :set_project, except: [:index, :new, :create, :my_projects]
+    before_action :authenticate_admin! , only: [:new, :create, :update, :edit, :destroy]
 
     def index
         @projects = Project.order("updated_at DESC")
@@ -47,16 +48,14 @@ class ProjectsController < ApplicationController
     def my_projects
         if current_user.id.to_s == params[:user_id]
             
-            @projects = Project.select(Project.arel_table[Arel.star]).where(User.arel_table[:id].eq(current_user.id))
-            .joins(Project.arel_table.join(User.arel_table)
-            .on(User.arel_table[:id].eq(Project.arel_table[:user_id])).join_sources)
+            @projects = current_user.project.all
 
             @projects_account = Project.select(Arel.star.count).where(User.arel_table[:id].eq(current_user.id))
             .joins(Project.arel_table.join(User.arel_table)
             .on(User.arel_table[:id].eq(Project.arel_table[:user_id])).join_sources)
 
         elsif
-            redirect_to '/projects/' 
+            redirect_to "/projects/my_projects/#{current_user.id}"
         end        
     end
 

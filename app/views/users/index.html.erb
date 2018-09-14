@@ -1,0 +1,23 @@
+
+<div class="body_container">
+
+<!--<%= @users.inspect %>-->
+    <% @users.each do |user| %>
+
+        <div class="general_container">
+
+            <div class="data_description">
+              <ul>
+                <li>ID: <%= user.id %></li>
+                <li>NOMBRE: <%= user.name %></li>
+                <li>EMAIL: <%= user.email %></li>
+                <li>C.C: <%= user.cc %></li>
+                <li>PERMISOS: <%= user.permission_level %></li>
+              </ul>
+            </div>
+
+        </div>
+
+    <% end %>
+
+</div>
