@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_14_015836) do
+ActiveRecord::Schema.define(version: 2018_09_16_024605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comment_projects", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "project_id"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_comment_projects_on_project_id"
+    t.index ["user_id"], name: "index_comment_projects_on_user_id"
+  end
+
+  create_table "comment_publications", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "publication_id"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["publication_id"], name: "index_comment_publications_on_publication_id"
+    t.index ["user_id"], name: "index_comment_publications_on_user_id"
+  end
 
   create_table "notifications", force: :cascade do |t|
     t.string "type"
@@ -21,8 +41,12 @@ ActiveRecord::Schema.define(version: 2018_09_14_015836) do
     t.string "state"
     t.bigint "state_publication_id"
     t.bigint "state_project_id"
+    t.bigint "comment_publication_id"
+    t.bigint "comment_project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["comment_project_id"], name: "index_notifications_on_comment_project_id"
+    t.index ["comment_publication_id"], name: "index_notifications_on_comment_publication_id"
     t.index ["state_project_id"], name: "index_notifications_on_state_project_id"
     t.index ["state_publication_id"], name: "index_notifications_on_state_publication_id"
   end
@@ -63,7 +87,6 @@ ActiveRecord::Schema.define(version: 2018_09_14_015836) do
   create_table "state_projects", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "project_id"
-    t.text "comment"
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,7 +97,6 @@ ActiveRecord::Schema.define(version: 2018_09_14_015836) do
   create_table "state_publications", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "publication_id"
-    t.text "comment"
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -97,6 +119,12 @@ ActiveRecord::Schema.define(version: 2018_09_14_015836) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comment_projects", "projects"
+  add_foreign_key "comment_projects", "users"
+  add_foreign_key "comment_publications", "publications"
+  add_foreign_key "comment_publications", "users"
+  add_foreign_key "notifications", "comment_projects"
+  add_foreign_key "notifications", "comment_publications"
   add_foreign_key "notifications", "state_projects"
   add_foreign_key "notifications", "state_publications"
   add_foreign_key "projects", "users"

@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
     def show
         @project.update_visits_count
         @state_project = StateProject.new
+        @comment_project = CommentProject.new
     end
 
 

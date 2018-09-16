@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  # resources :comment_projects
+  # resources :comment_publications
+  resources :notifications
   devise_for :users 
 
   get '/users/' , to: 'users#index'
@@ -7,10 +10,12 @@ Rails.application.routes.draw do
 
   resources :publications do
     resources :state_publications, only: [:create, :destroy, :update, :show]
+    resources :comment_publications, only: [:create, :destroy, :update, :show]
   end
 
   resources :projects do
     resources :state_projects, only: [:create, :destroy, :update, :show]
+    resources :comment_projects, only: [:create, :destroy, :update, :show]
   end 
   
   

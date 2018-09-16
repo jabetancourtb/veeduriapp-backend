@@ -77,6 +77,6 @@ class StateProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def state_project_params
-      params.require(:state_project).permit(:user_id, :project_id, :comment, :state)
+      params.require(:state_project).permit(:user_id, :project_id, :state)
     end
 end

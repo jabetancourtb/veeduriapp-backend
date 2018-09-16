@@ -13,6 +13,7 @@ class PublicationsController < ApplicationController
         #@publication = Publication.find(params[:id])
         @publication.update_visits_count
         @state_publication = StatePublication.new
+        @comment_publication = CommentPublication.new
     end
 
 

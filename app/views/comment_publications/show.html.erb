@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @comment_publication.user %>
+</p>
+
+<p>
+  <strong>Publication:</strong>
+  <%= @comment_publication.publication %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @comment_publication.comment %>
+</p>
+
+<%= link_to 'Edit', edit_comment_publication_path(@comment_publication) %> |
+<%= link_to 'Back', comment_publications_path %>

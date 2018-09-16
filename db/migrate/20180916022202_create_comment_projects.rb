@@ -1,9 +1,9 @@
-class CreateStateProjects < ActiveRecord::Migration[5.2]
+class CreateCommentProjects < ActiveRecord::Migration[5.2]
   def change
-    create_table :state_projects do |t|
+    create_table :comment_projects do |t|
       t.references :user, foreign_key: true
       t.references :project, foreign_key: true
-      t.string :state
+      t.text :comment
 
       t.timestamps
     end

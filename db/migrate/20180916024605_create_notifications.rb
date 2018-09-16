@@ -6,6 +6,8 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
       t.string :state
       t.belongs_to :state_publication, foreign_key: true
       t.belongs_to :state_project, foreign_key: true
+      t.belongs_to :comment_publication, foreign_key: true
+      t.belongs_to :comment_project, foreign_key: true
       t.timestamps
     end
   end

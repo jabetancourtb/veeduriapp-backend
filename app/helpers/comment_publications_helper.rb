@@ -1,0 +1,2 @@
+module CommentPublicationsHelper
+end

@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on "ajax:success", "form#comments-form-publication", (ev,data) -> 
-    # console.log data
+    console.log data
+    $(this).find("textarea").val("")
+    $("#comments-box-publication").append("<li> #{data.user.name} - #{data.comment} </li>")
 $(document).on "ajax:error", "form#comments-form-publication", (ev,data) -> 
     # console.log data

@@ -1,0 +1,24 @@
+<%-# <%= form_with(model: comment_project, local: true) do |form| -%>
+
+<%= form_for([@project, @comment_project], remote: true, html: {id: "comments-form-project", :"data-type" => "json"}) do |form| %>
+  <% if @comment_project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment_project.errors.count, "error") %> prohibited this comment_project from being saved:</h2>
+
+      <ul>
+      <% @comment_project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_area :comment %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

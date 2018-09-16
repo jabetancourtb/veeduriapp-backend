@@ -6,9 +6,11 @@ class User < ApplicationRecord
   
   has_many :publication
   has_many :state_publication
+  has_many :comment_publication
 
   has_many :project
   has_many :state_project
+  has_many :comment_project
   #has_many :publications, :through => :user_publications
   # validates :name, presence: true
   # validates :email, presence: true

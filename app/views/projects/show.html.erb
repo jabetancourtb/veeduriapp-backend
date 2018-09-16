@@ -37,7 +37,7 @@
         <h5>Comentarios</h5>
 
         <ul id="comments-box-project">
-            <% @project.state_project.each do  |comment| %>
+            <% @project.comment_project.each do  |comment| %>
                 <li>   
                     <strong><%= comment.user.name %>:</strong> 
                     <%= comment.comment %> 
@@ -46,7 +46,7 @@
         </ul>
 
         <% if user_signed_in? %>
-            <%= render "state_projects/form" %>
+            <%= render "comment_projects/form" %>
         <% end %>
     </div>
 
