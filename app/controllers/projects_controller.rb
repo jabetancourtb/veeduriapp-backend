@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
     end
 
     def my_projects
-        if current_user.id.to_s == params[:user_id]
+        #if current_user.id.to_s == params[:user_id]
             
             @projects = current_user.project.all
 
@@ -55,9 +55,9 @@ class ProjectsController < ApplicationController
             .joins(Project.arel_table.join(User.arel_table)
             .on(User.arel_table[:id].eq(Project.arel_table[:user_id])).join_sources)
 
-        elsif
-            redirect_to "/projects/my_projects/#{current_user.id}"
-        end        
+        # elsif
+        #     redirect_to "/projects/my_projects/#{current_user.id}"
+        # end        
     end
 
 

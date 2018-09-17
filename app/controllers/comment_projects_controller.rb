@@ -64,6 +64,42 @@ class CommentProjectsController < ApplicationController
     end
   end
 
+
+  def find_state
+    @follow_users = StateProject.select(Arel.star).where(
+      StateProject.arel_table[:state].eq('follow').and(
+        StateProject.arel_table[:project_id].eq(params[:project_id]).and(StateProject.arel_table[:user_id].not_eq(current_user.id))
+    )
+    )
+
+    a =  @follow_users.inspect.split(", ")
+    hash_user_id = {}
+    hash_project_id = {}
+
+    i=1
+    j=1
+
+    a.each do |e|
+        if e.include? "user_id"
+            value = e.split(": ")
+            hash_user_id[value[0]+"_"+i.to_s] = value[1]
+            i+=1
+        end
+    end
+
+    a.each do |e|
+        if e.include? "project_id"
+            value = e.split(": ")
+            hash_project_id[value[0]+"_"+j.to_s] = value[1]
+            j+=1
+        end
+    end
+
+    puts hash_user_id
+    puts hash_project_id
+
+  end
+
   private
 
     def set_project

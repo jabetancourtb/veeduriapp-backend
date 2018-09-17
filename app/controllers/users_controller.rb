@@ -11,11 +11,12 @@ class UsersController < ApplicationController
     
 
     def show
-        if current_user.id.to_s == params[:id]
-            @user = User.find(params[:id]) 
-        elsif
-            redirect_to "/users/#{current_user.id}"
-        end
+        #if current_user.id.to_s == params[:id]
+            @user = User.find(current_user.id) 
+            #@user = User.find(params[:id]) 
+        #elsif
+         #   redirect_to "/users/#{current_user.id}"
+        #end
     end
 
     

@@ -14,6 +14,9 @@ class PublicationsController < ApplicationController
         @publication.update_visits_count
         @state_publication = StatePublication.new
         @comment_publication = CommentPublication.new
+        
+        #find_state
+        
     end
 
 
@@ -58,7 +61,7 @@ class PublicationsController < ApplicationController
     end
 
     def my_publications
-        if current_user.id.to_s == params[:user_id]
+       # if current_user.id.to_s == params[:user_id]
             
             # @publications = Publication.select(Publication.arel_table[Arel.star]).where(User.arel_table[:id].eq(current_user.id))
             # .joins(Publication.arel_table.join(User.arel_table)
@@ -69,9 +72,9 @@ class PublicationsController < ApplicationController
             .joins(Publication.arel_table.join(User.arel_table)
             .on(User.arel_table[:id].eq(Publication.arel_table[:user_id])).join_sources)
 
-        elsif
-            redirect_to "/publications/my_publications/#{current_user.id}"
-        end        
+        # elsif
+        #     redirect_to "/publications/my_publications/#{current_user.id}"
+        # end        
     end
 
 

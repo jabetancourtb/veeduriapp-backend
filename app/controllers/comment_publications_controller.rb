@@ -27,8 +27,10 @@ class CommentPublicationsController < ApplicationController
   # POST /comment_publications.json
   def create
     @comment_publication = current_user.comment_publication.new(comment_publication_params)
+    find_state
     @comment_publication.publication = @publication
 
+    
 
     respond_to do |format|
       if @comment_publication.save
@@ -63,6 +65,51 @@ class CommentPublicationsController < ApplicationController
       format.html { redirect_to @publication, notice: 'Comment publication was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+
+  def find_state
+    @follow_users = StatePublication.select(Arel.star).where(
+    StatePublication.arel_table[:state].eq('follow').and(
+        StatePublication.arel_table[:publication_id].eq(params[:publication_id]).and(StatePublication.arel_table[:user_id].not_eq(current_user.id))
+    )
+    )
+
+    # @follow_users = StatePublication.find(params[:id])
+
+    # if @follow_users.inspect.include? "user_id"
+    #     puts "String includes 'cde'"
+    #  end
+    # puts @follow_users.inspect.include? "user_id"
+    #puts @follow_users.inspect
+
+    #a=  @follow_users.inspect.split("#<StatePublication").to_s.split(",")
+    a =  @follow_users.inspect.split(", ")
+    # puts a[1].split(":")[1]
+    hash_user_id = {}
+    hash_publication_id = {}
+
+    i=1
+    j=1
+
+    a.each do |e|
+        if e.include? "user_id"
+            value = e.split(": ")
+            hash_user_id[value[0]+"_"+i.to_s] = value[1]
+            i+=1
+        end
+    end
+
+    a.each do |e|
+        if e.include? "publication_id"
+            value = e.split(": ")
+            hash_publication_id[value[0]+"_"+j.to_s] = value[1]
+            j+=1
+        end
+    end
+
+    puts hash_user_id
+    puts hash_publication_id
   end
 
   private
