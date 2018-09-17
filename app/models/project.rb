@@ -2,7 +2,7 @@ class Project < ApplicationRecord
     belongs_to :user
     has_many :state_project
     has_many :comment_project
-    # has_many :notification
+    has_many :notification
     validates :title, presence: true
     validates :information, presence: true, length: { minimum: 20 }
     validates :description, presence: true

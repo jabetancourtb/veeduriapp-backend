@@ -1,15 +1,24 @@
 class NotificationsController < ApplicationController
 
+    before_action :authenticate_user!
+    before_action :set_notification, except: [:index, :new, :create, :my_publications]
+
     def index
-        @notifications = Notification.order("updated_at DESC")
+        #@notifications = Notification.order("updated_at DESC")
+        @notifications = Notification.find(:user_id)
     end
 
-    # def create_notification(publication_id)
-    #     @notification = Notification.create(description:"Un usuario comento la publicación publication_id", state:1, publication_id:publication_id, user_id:1)
-    #     #puts publication_id
-    #     if @notification.save
-    #         puts "HOLAAAAAA"
-    #     end
-    # end
+    def show
+    end
+
+    private
+
+    def set_notification
+        @notification = Notification.find(params[:id])
+    end
+
+    def notification_params
+       params.require(:notification).permit(:description, :state, :user_id, :publication_id, :project_id)
+    end
 
 end

@@ -10,13 +10,9 @@ class PublicationsController < ApplicationController
     
 
     def show
-        #@publication = Publication.find(params[:id])
         @publication.update_visits_count
         @state_publication = StatePublication.new
-        @comment_publication = CommentPublication.new
-        
-        #find_state
-        
+        @comment_publication = CommentPublication.new       
     end
 
 
@@ -39,13 +35,10 @@ class PublicationsController < ApplicationController
     
 
     def edit
-       # @publication = Publication.find(params[:id])
     end
 
 
     def update
-        #@publication = Publication.find(params[:id])
-
         if @publication.update(publication_params)
             redirect_to @publication
         elsif
@@ -55,7 +48,6 @@ class PublicationsController < ApplicationController
 
 
     def destroy
-        #@publication = Publication.find(params[:id])
         @publication.destroy
         redirect_to "#{publications_path}/my_publications/#{current_user.id}"
     end

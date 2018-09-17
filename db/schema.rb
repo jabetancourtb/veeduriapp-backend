@@ -40,8 +40,10 @@ ActiveRecord::Schema.define(version: 2018_09_16_024605) do
     t.integer "state"
     t.bigint "user_id"
     t.bigint "publication_id"
+    t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_notifications_on_project_id"
     t.index ["publication_id"], name: "index_notifications_on_publication_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
@@ -118,6 +120,7 @@ ActiveRecord::Schema.define(version: 2018_09_16_024605) do
   add_foreign_key "comment_projects", "users"
   add_foreign_key "comment_publications", "publications"
   add_foreign_key "comment_publications", "users"
+  add_foreign_key "notifications", "projects"
   add_foreign_key "notifications", "publications"
   add_foreign_key "notifications", "users"
   add_foreign_key "projects", "users"

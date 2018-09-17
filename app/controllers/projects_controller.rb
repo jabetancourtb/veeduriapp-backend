@@ -60,17 +60,6 @@ class ProjectsController < ApplicationController
         # end        
     end
 
-    def create_notification(publication_id)
-        @notification = Project.create(title:"Rendición de cuentas de Peñalosa de sus dos años de gobierno", information:"A esta hora en el colegio La Felicidad de la localidad de Fontibón, el alcalde Enrique Peñalosa entrega un balance de lo que han sido sus dos primeros años de gobierno en Bogotá.  
-        El veedor Distrital, Jaime Torres-Melo, se anticipó al evento de rendición de cuentas y aunque destacó logros en 32 áreas estratégicas, advirtió que es preciso acelerar la ejecución de los recursos y solucionar temas clave como terminar la implementación del Sistema Integrado de Transporte Público (SITP).", 
-        name:"Ficha EBI Proyecto 1035", description:"La Veeduría anticipó los datos: destaca 32 logros en áreas estratégicas, pide acelerar ejecución.", photo:"/assets/proyecto2", user_id: 1)
-        #puts publication_id
-        if @notification.save
-            puts "HOLAAAAAA"
-        end
-    end
-
-
     private
 
     def set_project

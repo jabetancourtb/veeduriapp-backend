@@ -27,6 +27,7 @@ class CommentProjectsController < ApplicationController
   # POST /comment_projects.json
   def create
     @comment_project = current_user.comment_project.new(comment_project_params)
+    find_state
     @comment_project.project = @project
 
     respond_to do |format|
@@ -64,40 +65,18 @@ class CommentProjectsController < ApplicationController
     end
   end
 
-
   def find_state
     @follow_users = StateProject.select(Arel.star).where(
-      StateProject.arel_table[:state].eq('follow').and(
+      StateProject.arel_table[:state].eq(1).and(
         StateProject.arel_table[:project_id].eq(params[:project_id]).and(StateProject.arel_table[:user_id].not_eq(current_user.id))
     )
     )
 
-    a =  @follow_users.inspect.split(", ")
-    hash_user_id = {}
-    hash_project_id = {}
-
-    i=1
-    j=1
-
-    a.each do |e|
-        if e.include? "user_id"
-            value = e.split(": ")
-            hash_user_id[value[0]+"_"+i.to_s] = value[1]
-            i+=1
-        end
+    @follow_users.each do |follow_user|
+      puts "user_id: ",follow_user.user_id
+      puts "project_id: ",follow_user.project_id
+      Notification.create(description:"Un usuario comento el proyecto #{params[:project_id]}", state:1, publication_id:Nil, publication_id:follow_user.project_id, user_id:follow_user.user_id)
     end
-
-    a.each do |e|
-        if e.include? "project_id"
-            value = e.split(": ")
-            hash_project_id[value[0]+"_"+j.to_s] = value[1]
-            j+=1
-        end
-    end
-
-    puts hash_user_id
-    puts hash_project_id
-
   end
 
   private

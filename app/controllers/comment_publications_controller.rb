@@ -75,51 +75,11 @@ class CommentPublicationsController < ApplicationController
     )
     )
 
-    
-
     @follow_users.each do |follow_user|
       puts "user_id: ",follow_user.user_id
       puts "publication_id: ",follow_user.publication_id
-      #noti = NotificationsController.new.create_notification(follow_user.publication_id)
-      Notification.create(description:"Un usuario comento la publicación #{params[:publication_id]}", state:1, publication_id:params[:publication_id], user_id:follow_user.user_id)
-      #Notification.new(description: "Un usuario comento la publicación #{params[:publication_id]}") 
+      Notification.create(description:"Un usuario comento la publicación #{params[:publication_id]}", state:1, publication_id:follow_user.publication_id, publication_id: Nil, user_id:follow_user.user_id)
     end
-
-    
-    
-    
-    # @notification = Notification.new(description: "Un usuario comento la publicación #{params[:publication_id]}") 
-    # @notification.save
-    # puts @notification.inspect
-
-    #puts StatePublication.first.attributes.values_at *StatePublication.column_names
-
-    # a =  @follow_users.inspect.split(", ")
-
-    # hash_user_id = {}
-    # hash_publication_id = {}
-
-    # i=1
-    # j=1
-
-    # a.each do |e|
-    #     if e.include? "user_id"
-    #         value = e.split(": ")
-    #         hash_user_id[value[0]+"_"+i.to_s] = value[1]
-    #         i+=1
-    #     end
-    # end
-
-    # a.each do |e|
-    #     if e.include? "publication_id"
-    #         value = e.split(": ")
-    #         hash_publication_id[value[0]+"_"+j.to_s] = value[1]
-    #         j+=1
-    #     end
-    # end
-
-    # puts hash_user_id
-    # puts hash_publication_id
   end
 
   private
