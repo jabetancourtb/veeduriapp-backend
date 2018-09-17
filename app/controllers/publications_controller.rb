@@ -4,7 +4,7 @@ class PublicationsController < ApplicationController
     before_action :set_publication, except: [:index, :new, :create, :my_publications]
 
     def index
-        @publications = Publication.order("updated_at DESC")
+        @publications = Publication.order("created_at DESC")
         #@publications = current_user.publication.all
     end
     

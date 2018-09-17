@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :project
   has_many :state_project
   has_many :comment_project
+  has_many :notification
   #has_many :publications, :through => :user_publications
   # validates :name, presence: true
   # validates :email, presence: true

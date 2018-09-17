@@ -3,7 +3,7 @@ class CreateStateProjects < ActiveRecord::Migration[5.2]
     create_table :state_projects do |t|
       t.references :user, foreign_key: true
       t.references :project, foreign_key: true
-      t.string :state
+      t.integer :state
 
       t.timestamps
     end
