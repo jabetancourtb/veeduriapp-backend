@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
 
     def index
         #@notifications = Notification.order("updated_at DESC")
-        @notifications = Notification.find(:user_id)
+        @notifications = current_user.notification.order("updated_at DESC")
     end
 
     def show

@@ -2,7 +2,6 @@ class Publication < ApplicationRecord
     belongs_to :user
     has_many :state_publication
     has_many :comment_publication
-    has_many :notification
     validates :title, presence: true
     validates :information, presence: true, length: { minimum: 20 }
     validates :description, presence: true

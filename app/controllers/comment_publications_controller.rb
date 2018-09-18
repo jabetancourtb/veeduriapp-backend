@@ -78,7 +78,8 @@ class CommentPublicationsController < ApplicationController
     @follow_users.each do |follow_user|
       puts "user_id: ",follow_user.user_id
       puts "publication_id: ",follow_user.publication_id
-      Notification.create(description:"Un usuario comento la publicación #{params[:publication_id]}", state:1, publication_id:follow_user.publication_id, publication_id: Nil, user_id:follow_user.user_id)
+      Notification.create(description:"Un usuario comento la publicación #{params[:publication_id]}", state:1, user_id:follow_user.user_id, id_p:"pu_#{params[:publication_id]}", 
+      url_p:"/publications/#{params[:publication_id]}")
     end
   end
 

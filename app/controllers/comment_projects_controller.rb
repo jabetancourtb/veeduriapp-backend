@@ -75,7 +75,8 @@ class CommentProjectsController < ApplicationController
     @follow_users.each do |follow_user|
       puts "user_id: ",follow_user.user_id
       puts "project_id: ",follow_user.project_id
-      Notification.create(description:"Un usuario comento el proyecto #{params[:project_id]}", state:1, publication_id:Nil, publication_id:follow_user.project_id, user_id:follow_user.user_id)
+      Notification.create(description:"Un usuario comento el proyecto #{params[:project_id]}", state:1, user_id:follow_user.user_id, id_p:"pr_#{params[:project_id]}", 
+      url_p:"/projects/#{params[:project_id]}")
     end
   end
 
